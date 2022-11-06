@@ -1,4 +1,12 @@
+# dependencies
 node_modules/
+
+# build files
 dist/
+
+# cache
+.eslintcache
+
+# IDE
 .idea
 .vscode/
