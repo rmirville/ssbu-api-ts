@@ -1,18 +1,19 @@
 {
+	"private": "true",
 	"name": "ssbu-api-ts",
 	"version": "1.0.0",
 	"description": "A TypeScript Express REST API for SSBUTools",
-	"main": "index.ts",
+	"main": "src/index.ts",
+	"author": "Raynald Mirville",
+	"license": "ISC",
+	"keywords": [
+		"ssbu"
+	],
 	"scripts": {
 		"test": "jasmine-ts --config=jasmine.json",
 		"prepare": "husky install",
 		"lint": "eslint --fix"
 	},
-	"keywords": [
-		"ssbu"
-	],
-	"author": "Raynald Mirville",
-	"license": "ISC",
 	"dependencies": {
 		"express": "^4.18.2"
 	},
