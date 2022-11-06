@@ -3,7 +3,7 @@
 	"name": "ssbu-api-ts",
 	"version": "1.0.0",
 	"description": "A TypeScript Express REST API for SSBUTools",
-	"main": "src/index.ts",
+	"main": "main.js",
 	"author": "Raynald Mirville",
 	"license": "ISC",
 	"keywords": [
