@@ -5,7 +5,8 @@
 	"main": "index.ts",
 	"scripts": {
 		"test": "jasmine-ts --config=jasmine.json",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"lint": "eslint --cache --fix"
 	},
 	"keywords": [
 		"ssbu"
@@ -32,6 +33,7 @@
 		"typescript": "^4.8.4"
 	},
 	"lint-staged": {
+		"*.{js,ts}": "eslint --cache --fix",
 		"**/*": "prettier --write --ignore-unknown"
 	}
 }
