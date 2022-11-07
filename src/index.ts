@@ -5,8 +5,10 @@
  */
 
 import app from './app.js';
-import { debug } from 'debug'; //  debug = require('debug')('api-ts:server');
+import debugPkg from 'debug'; //  debug = require('debug')('api-ts:server');
 import http from 'http';
+
+const { debug } = debugPkg;
 
 /**
  * Get port from environment and store in Express.
