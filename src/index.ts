@@ -56,6 +56,8 @@ function normalizePort(val: string): number | string | false {
  */
 
 function onError(error: { syscall: string; code: any }) {
+	let exit = false;
+
 	if (error.syscall !== 'listen') {
 		throw error;
 	}
@@ -67,14 +69,17 @@ function onError(error: { syscall: string; code: any }) {
 	switch (error.code) {
 		case 'EACCES':
 			console.error(bind + ' requires elevated privileges');
-			process.exit(1);
+			exit = true;
 			break;
 		case 'EADDRINUSE':
 			console.error(bind + ' is already in use');
-			process.exit(1);
+			exit = true;
 			break;
 		default:
 			throw error;
+	}
+	if (exit) {
+		process.exit(1);
 	}
 }
 
