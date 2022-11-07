@@ -1,11 +1,14 @@
 import express, { Express } from 'express';
 import path from 'path';
+import { fileURLToPath } from 'url';
 // import cookieParser from 'cookie-parser';
 // import logger from 'morgan';
 
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app: Express = express();
 
 // app.use(logger('dev'));
