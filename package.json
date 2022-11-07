@@ -10,7 +10,8 @@
 		"ssbu"
 	],
 	"scripts": {
-		"start": "node ./bin/www",
+		"start": "npm run start:dev",
+		"start:dev": "ts-node-esm ./src/index.ts",
 		"test": "jasmine-ts --config=jasmine.json",
 		"prepare": "husky install",
 		"lint": "eslint --fix"
