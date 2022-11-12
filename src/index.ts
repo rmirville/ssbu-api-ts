@@ -5,10 +5,11 @@
  */
 
 import app from './app.js';
-import debugPkg from 'debug'; //  debug = require('debug')('api-ts:server');
+import debugPkg from 'debug';
 import http from 'http';
 
 const { debug } = debugPkg;
+debug('api-ts:server');
 
 /**
  * Get port from environment and store in Express.
@@ -57,7 +58,7 @@ function normalizePort(val: string): number | string | false {
  * Event listener for HTTP server "error" event.
  */
 
-function onError(error: { syscall: string; code: any }) {
+function onError(error: { syscall: string; code: string }) {
 	let exit = false;
 
 	if (error.syscall !== 'listen') {
