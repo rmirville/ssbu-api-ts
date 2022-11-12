@@ -8,15 +8,21 @@ import usersRouter from './routes/users.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const app: Express = express();
 const logger = morgan;
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+export class App {
+	public app: Express;
+	constructor() {
+		this.app = express();
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+		this.app.use(logger('dev'));
+		this.app.use(express.json());
+		this.app.use(express.urlencoded({ extended: false }));
+		this.app.use(express.static(path.join(__dirname, 'public')));
 
-export default app;
+		this.app.use('/', indexRouter);
+		this.app.use('/users', usersRouter);
+	}
+}
+
+export default new App().app;
