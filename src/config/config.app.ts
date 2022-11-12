@@ -1,8 +1,12 @@
+export const port: number | string | false = normalizePort(
+	process.env['PORT'] || '3000'
+);
+
 /**
  * Normalize a port into a number, string, or false.
  */
 
-export function normalizePort(val: string): number | string | false {
+function normalizePort(val: string): number | string | false {
 	const port = parseInt(val, 10);
 
 	if (isNaN(port)) {

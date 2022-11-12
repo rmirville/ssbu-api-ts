@@ -7,7 +7,7 @@
 import app from './app.js';
 import debugPkg from 'debug';
 import http from 'http';
-import { normalizePort } from './config/config.app.js';
+import { port } from './config/config.app.js';
 
 const { debug } = debugPkg;
 debug('api-ts:server');
@@ -16,9 +16,6 @@ debug('api-ts:server');
  * Get port from environment and store in Express.
  */
 
-const port: number | string | false = normalizePort(
-	process.env['PORT'] || '3000'
-);
 app.set('port', port);
 
 /**
