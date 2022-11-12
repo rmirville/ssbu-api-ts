@@ -7,6 +7,7 @@
 import app from './app.js';
 import debugPkg from 'debug';
 import http from 'http';
+import { normalizePort } from './config/config.app.js';
 
 const { debug } = debugPkg;
 debug('api-ts:server');
@@ -33,26 +34,6 @@ const server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
-/**
- * Normalize a port into a number, string, or false.
- */
-
-function normalizePort(val: string): number | string | false {
-	const port = parseInt(val, 10);
-
-	if (isNaN(port)) {
-		// named pipe
-		return val;
-	}
-
-	if (port >= 0) {
-		// port number
-		return port;
-	}
-
-	return false;
-}
 
 /**
  * Event listener for HTTP server "error" event.
