@@ -35,11 +35,7 @@ export class App {
 
 		this.app.set('port', this.appConfig.port);
 
-		// add dependencies
-		this.app.use(logger('dev'));
-		this.app.use(express.json());
-		this.app.use(express.urlencoded({ extended: false }));
-		this.app.use(express.static(path.join(__dirname, 'public')));
+		this.#initializeMiddleware();
 
 		this.app.use('/', indexRouter);
 		this.app.use('/users', usersRouter);
@@ -53,6 +49,13 @@ export class App {
 		this.server.listen(this.appConfig.port);
 		this.server.on('error', this.#onError);
 		this.server.on('listening', this.#onListening);
+	};
+
+	#initializeMiddleware = () => {
+		this.app.use(logger('dev'));
+		this.app.use(express.json());
+		this.app.use(express.urlencoded({ extended: false }));
+		this.app.use(express.static(path.join(__dirname, 'public')));
 	};
 
 	/**
