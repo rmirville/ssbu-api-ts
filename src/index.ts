@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 
+import { port } from './config/config.app.js';
 import { App } from './app.js';
 
-new App();
+new App({ port });
