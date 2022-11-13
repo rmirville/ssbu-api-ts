@@ -1,7 +1,9 @@
-import express, { Express } from 'express';
+import express from 'express';
+import type { Express } from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import morgan from 'morgan';
+import { port } from './config/config.app.js';
 
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
@@ -14,6 +16,7 @@ export class App {
 	public app: Express;
 	constructor() {
 		this.app = express();
+		this.app.set('port', port);
 
 		this.app.use(logger('dev'));
 		this.app.use(express.json());
@@ -25,4 +28,4 @@ export class App {
 	}
 }
 
-export default new App().app;
+export const app: Express = new App().app;

@@ -4,19 +4,16 @@
  * Module dependencies.
  */
 
-import app from './app.js';
+import * as appPkg from './app.js';
 import debugPkg from 'debug';
 import http from 'http';
+import type { Express } from 'express';
 import { port } from './config/config.app.js';
 
 const { debug } = debugPkg;
 debug('api-ts:server');
 
-/**
- * Get port from environment and store in Express.
- */
-
-app.set('port', port);
+const app: Express = appPkg.app;
 
 /**
  * Create HTTP server.
