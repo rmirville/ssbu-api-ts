@@ -2,6 +2,7 @@ import express from 'express';
 import type { Express } from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import http from 'http';
 import morgan from 'morgan';
 import { port } from './config/config.app.js';
 
@@ -14,6 +15,10 @@ const logger = morgan;
 
 export class App {
 	public app: Express;
+	public server!: http.Server<
+		typeof http.IncomingMessage,
+		typeof http.ServerResponse
+	>;
 	constructor() {
 		this.app = express();
 		this.app.set('port', port);
@@ -25,6 +30,12 @@ export class App {
 
 		this.app.use('/', indexRouter);
 		this.app.use('/users', usersRouter);
+		const server = http.createServer(this.app);
+
+		/**
+		 * Listen on provided port, on all network interfaces.
+		 */
+		server.listen(port);
 	}
 }
 
