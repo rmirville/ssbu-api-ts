@@ -47,9 +47,18 @@ export class App {
 	}
 
 	/**
+	 * Listen on provided port, on all network interfaces.
+	 */
+	listen = () => {
+		this.server.listen(this.appConfig.port);
+		this.server.on('error', this.#onError);
+		this.server.on('listening', this.#onListening);
+	};
+
+	/**
 	 * Event listener for HTTP server "error" event.
 	 */
-	onError = (error: { syscall: string; code: string }) => {
+	#onError = (error: { syscall: string; code: string }) => {
 		let exit = false;
 
 		if (error.syscall !== 'listen') {
@@ -82,22 +91,12 @@ export class App {
 	/**
 	 * Event listener for HTTP server "listening" event.
 	 */
-
-	onListening = () => {
+	#onListening = () => {
 		const addr = this.server.address();
 		const bind =
 			typeof addr === 'string'
 				? 'pipe ' + addr
 				: 'port ' + JSON.stringify(addr?.port);
 		debug('Listening on ' + bind);
-	};
-
-	/**
-	 * Listen on provided port, on all network interfaces.
-	 */
-	listen = () => {
-		this.server.listen(this.appConfig.port);
-		this.server.on('error', this.onError);
-		this.server.on('listening', this.onListening);
 	};
 }
