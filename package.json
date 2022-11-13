@@ -37,6 +37,7 @@
 		"jasmine-ts": "^0.4.0",
 		"lint-staged": "^13.0.3",
 		"morgan": "~1.9.1",
+		"path": "^0.12.7",
 		"prettier": "2.7.1",
 		"ts-loader": "^9.4.1",
 		"ts-node": "^10.9.1",
