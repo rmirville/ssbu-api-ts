@@ -1,4 +1,10 @@
 {
 	"extends": "@tsconfig/node-lts-strictest-esm/tsconfig.json",
-	"exclude": ["node_modules", "dist/**/*", "*.cjs"]
+	"exclude": ["node_modules", "dist/**/*", "*.cjs"],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@app/*": ["src/*"]
+		}
+	}
 }
