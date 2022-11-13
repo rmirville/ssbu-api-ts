@@ -23,11 +23,19 @@ export class App {
 		typeof http.ServerResponse
 	>;
 	public appConfig: { port: Port } = { port: false };
+
 	constructor(config: { port: Port }) {
+		// populate app config
 		this.appConfig.port = config.port;
+
+		// populate db config
+
+		// set up app dependencies
 		this.app = express();
+
 		this.app.set('port', this.appConfig.port);
 
+		// add dependencies
 		this.app.use(logger('dev'));
 		this.app.use(express.json());
 		this.app.use(express.urlencoded({ extended: false }));
@@ -36,13 +44,6 @@ export class App {
 		this.app.use('/', indexRouter);
 		this.app.use('/users', usersRouter);
 		this.server = http.createServer(this.app);
-
-		/**
-		 * Listen on provided port, on all network interfaces.
-		 */
-		this.server.listen(this.appConfig.port);
-		this.server.on('error', this.onError);
-		this.server.on('listening', this.onListening);
 	}
 
 	/**
@@ -89,5 +90,14 @@ export class App {
 				? 'pipe ' + addr
 				: 'port ' + JSON.stringify(addr?.port);
 		debug('Listening on ' + bind);
+	};
+
+	/**
+	 * Listen on provided port, on all network interfaces.
+	 */
+	listen = () => {
+		this.server.listen(this.appConfig.port);
+		this.server.on('error', this.onError);
+		this.server.on('listening', this.onListening);
 	};
 }

@@ -7,4 +7,5 @@
 import { port } from './config/config.app.js';
 import { App } from './app.js';
 
-new App({ port });
+const app = new App({ port });
+app.listen();
