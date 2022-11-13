@@ -12,9 +12,10 @@
 	"scripts": {
 		"start": "npm run start:dev",
 		"start:dev": "ts-node-esm ./src/index.ts",
+		"build": "webpack ./webpack.config.cjs",
 		"test": "jasmine-ts --config=jasmine.json",
 		"prepare": "husky install",
-		"lint": "eslint --fix"
+		"lint": "eslint --fix ."
 	},
 	"dependencies": {
 		"express": "^4.18.2"
