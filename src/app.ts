@@ -36,9 +36,8 @@ export class App {
 		this.app.set('port', this.appConfig.port);
 
 		this.#initializeMiddleware();
+		this.#initializeControllers();
 
-		this.app.use('/', indexRouter);
-		this.app.use('/users', usersRouter);
 		this.server = http.createServer(this.app);
 	}
 
@@ -56,6 +55,11 @@ export class App {
 		this.app.use(express.json());
 		this.app.use(express.urlencoded({ extended: false }));
 		this.app.use(express.static(path.join(__dirname, 'public')));
+	};
+
+	#initializeControllers = () => {
+		this.app.use('/', indexRouter);
+		this.app.use('/users', usersRouter);
 	};
 
 	/**
